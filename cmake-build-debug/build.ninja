@@ -63,6 +63,13 @@ build CMakeFiles/try.dir/paddle.cpp.obj: CXX_COMPILER__try_unscanned_Debug C$:/U
   OBJECT_DIR = CMakeFiles\try.dir
   OBJECT_FILE_DIR = CMakeFiles\try.dir
 
+build CMakeFiles/try.dir/ball.cpp.obj: CXX_COMPILER__try_unscanned_Debug C$:/Users/Ryan/CLionProjects/try/ball.cpp || cmake_object_order_depends_target_try
+  DEP_FILE = CMakeFiles\try.dir\ball.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Lib/SDL2-2.30.9/x86_64-w64-mingw32/include/SDL2
+  OBJECT_DIR = CMakeFiles\try.dir
+  OBJECT_FILE_DIR = CMakeFiles\try.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target try
@@ -71,7 +78,7 @@ build CMakeFiles/try.dir/paddle.cpp.obj: CXX_COMPILER__try_unscanned_Debug C$:/U
 #############################################
 # Link the executable try.exe
 
-build try.exe: CXX_EXECUTABLE_LINKER__try_Debug CMakeFiles/try.dir/main.cpp.obj CMakeFiles/try.dir/paddle.cpp.obj | C$:/Lib/SDL2-2.30.9/x86_64-w64-mingw32/lib/libSDL2main.a C$:/Lib/SDL2-2.30.9/x86_64-w64-mingw32/lib/libSDL2.dll.a
+build try.exe: CXX_EXECUTABLE_LINKER__try_Debug CMakeFiles/try.dir/main.cpp.obj CMakeFiles/try.dir/paddle.cpp.obj CMakeFiles/try.dir/ball.cpp.obj | C$:/Lib/SDL2-2.30.9/x86_64-w64-mingw32/lib/libSDL2main.a C$:/Lib/SDL2-2.30.9/x86_64-w64-mingw32/lib/libSDL2.dll.a
   FLAGS = -g
   LINK_LIBRARIES = -lmingw32  -mwindows  C:/Lib/SDL2-2.30.9/x86_64-w64-mingw32/lib/libSDL2main.a  C:/Lib/SDL2-2.30.9/x86_64-w64-mingw32/lib/libSDL2.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\try.dir

@@ -13,47 +13,32 @@ SDL_Rect paddle::init (SDL_Renderer * renderer){
 }
 
 void paddle::move(SDL_Event e, SDL_Renderer *renderer) {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-    switch (e.type) {
-        case SDL_KEYDOWN:
-            switch (e.key.keysym.sym) {
-                case SDLK_LEFT:
-                    Velo = (Velo > 0) ? -1 : Velo - 3;
-                    if (Velo < -20) Velo = -20;
-                    break;
-                case SDLK_RIGHT:
-                    Velo = (Velo < 0) ? 1 : Velo + 3;
-                    if (Velo > 20) Velo = 20;
-                    break;
-                default:
-                    break;
-            }
-            break;
-
-        case SDL_KEYUP:
-            switch (e.key.keysym.sym) {
-                case SDLK_LEFT:
-                case SDLK_RIGHT:
-                    Velo = 0;
-                    break;
-                default:
-                    break;
-            }
-            break;
-
-        default:
-            break;
+    if (e.type == SDL_KEYDOWN) {
+        switch (e.key.keysym.sym) {
+            case SDLK_LEFT:
+                Velo = -20;
+                break;
+            case SDLK_RIGHT:
+                Velo = 20;
+                break;
+        }
+    } else if (e.type == SDL_KEYUP) {
+        if (e.key.keysym.sym == SDLK_LEFT || e.key.keysym.sym == SDLK_RIGHT) {
+            Velo = 0; // Stop moving
+        }
     }
 
     box.x += Velo;
+
+
     if (box.x < 0) {
         box.x = 0;
     } else if (box.x + box.w > 640) {
         box.x = 640 - box.w;
     }
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // White paddle
-    SDL_RenderFillRect(renderer, &box);                   // Draw updated paddle
-    SDL_RenderPresent(renderer);
 
+}
+void paddle::draw(SDL_Renderer *renderer) {
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(renderer, &box);
 }

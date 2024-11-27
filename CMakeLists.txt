@@ -13,6 +13,8 @@ include_directories(${SDL2_INCLUDE_DIR})
 
 add_executable(try main.cpp
         paddle.cpp
-        paddle.h)
+        paddle.h
+        ball.cpp
+        ball.h)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})

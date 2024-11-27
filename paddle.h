@@ -22,6 +22,7 @@ public:
 
     void move(SDL_Event e, SDL_Renderer *renderer);
     SDL_Rect init(SDL_Renderer *renderer);
+    void draw(SDL_Renderer * renderer);
 
 
     paddle(int startX, int startY) : pos(startX), width(100), length(10) {
