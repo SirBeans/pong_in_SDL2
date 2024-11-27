@@ -1,13 +1,10 @@
 #include <iostream>
 #include <SDL.h>
+#include "paddle.h"
 
 int main(int argc, char *args[]) {
     const int SCREEN_WIDTH = 640;
     const int SCREEN_HEIGHT = 480;
-    const int BOX_WIDTH = 50;
-    const int BOX_HEIGHT = 50;
-    const int MOVE_SPEED = 10;
-    int r;
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
@@ -30,9 +27,8 @@ int main(int argc, char *args[]) {
         return 1;
     }
 
-    // Initial box position
-    int boxX = (SCREEN_WIDTH - BOX_WIDTH) / 2;
-    int boxY = (SCREEN_HEIGHT - BOX_HEIGHT) / 2;
+    paddle player((SCREEN_WIDTH - 10) / 2, SCREEN_HEIGHT - 30); // Bottom-center, Pong-style paddle
+    player.init(renderer);
 
     bool quit = false;
     SDL_Event e;
@@ -42,31 +38,9 @@ int main(int argc, char *args[]) {
             if (e.type == SDL_QUIT) {
                 quit = true;
             } else if (e.type == SDL_KEYDOWN) {
-                switch (e.key.keysym.sym) {
-                    case SDLK_LEFT:
-                        boxX -= MOVE_SPEED;
-                        if (boxX < 0) boxX = 0;
-                        break;
-                    case SDLK_RIGHT:
-                        boxX += MOVE_SPEED;
-                        r++;
-                        if (boxX > SCREEN_WIDTH - BOX_WIDTH) boxX = SCREEN_WIDTH - BOX_WIDTH;
-                        break;
-                }
+               player.move(e, renderer);
             }
         }
-
-        // Clear screen
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Black background
-        SDL_RenderClear(renderer);
-
-
-        SDL_Rect box = {boxX, boxY, BOX_WIDTH, BOX_HEIGHT};
-        SDL_SetRenderDrawColor(renderer, r, 255, 255, 255); // White box
-        SDL_RenderDrawRect(renderer, &box);
-
-        // Update screen
-        SDL_RenderPresent(renderer);
     }
 
     // Clean up

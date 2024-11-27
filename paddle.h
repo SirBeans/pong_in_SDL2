@@ -9,33 +9,27 @@
 
 
 class paddle {
+public:
 
+    int length;
+    int width;
+    int pos;
+    int Velo = 0;
     enum dir {
         RIGHT,
         LEFT
     };
 
-
-
-    int length;
-    int width;
-
-public:
-    int pos;
-
-    void move(SDL_Event * e, dir f);
+    void move(SDL_Event e, SDL_Renderer *renderer);
     SDL_Rect init(SDL_Renderer *renderer);
 
-public:
-    paddle(int x, int y) {
-        length = x;
-        width = y;
+
+    paddle(int startX, int startY) : pos(startX), width(100), length(10) {
+        box = {startX, startY, width, length};
     }
 
-    paddle() {
-        length = 100;
-        width = 10;
-    }
+
+    SDL_Rect box = {};
 
 
 };
